@@ -1,0 +1,30 @@
+from flask import Flask, render_template, request
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return '''
+    <center>
+        <h2>Student Registration</h2>
+        <a href="/register">Go to Registration Page</a>
+    </center>
+    '''
+
+@app.route('/register')
+def register():
+    return render_template('register.html')
+
+@app.route('/success', methods=['POST'])
+def success():
+    name = request.form['name']
+    year = request.form['year']
+
+    return render_template(
+        'success.html',
+        name=name,
+        year=year
+    )
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)

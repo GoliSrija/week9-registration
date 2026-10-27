@@ -1,0 +1,26 @@
+
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: registration-app
+
+spec:
+  replicas: 3
+
+  selector:
+    matchLabels:
+      app: registration-app
+
+  template:
+    metadata:
+      labels:
+        app: registration-app
+
+    spec:
+      containers:
+        - name: registration-app
+          image: golisrija123/week8:week9
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
